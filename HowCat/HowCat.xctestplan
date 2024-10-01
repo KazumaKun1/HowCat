@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "08AF6E2A-4112-42B3-B2E4-B4481A9A8B4D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:HowCat.xcodeproj",
+      "identifier" : "CC3B4F4B2CAACBB8003E6D8B",
+      "name" : "HowCat"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:HowCat.xcodeproj",
+        "identifier" : "CC3B4F5B2CAACBBB003E6D8B",
+        "name" : "HowCatTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:HowCat.xcodeproj",
+        "identifier" : "CC3B4F652CAACBBB003E6D8B",
+        "name" : "HowCatUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
