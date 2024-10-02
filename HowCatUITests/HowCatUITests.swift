@@ -43,8 +43,8 @@ class HowCatUITests: XCTestCase {
             XCTFail("Cat fact didn't appear on time")
         }
         
-        XCTAssertFalse(introductionLabel.exists)
-        XCTAssertEqual(factLabel.label, "This is a fact")
+        XCTAssertFalse(introductionLabel.exists, "The introduction screen is still present")
+        XCTAssertEqual(factLabel.label, "This is a fact", "The fact shown on the screen is not the expected fact")
     }
     
     @MainActor
@@ -67,7 +67,7 @@ class HowCatUITests: XCTestCase {
             XCTFail("Cat Error BadURL didn't appear on time")
         }
         
-        XCTAssertEqual(errorLabel.label, CatServiceErrorText.badUrlDescription)
+        XCTAssertEqual(errorLabel.label, CatServiceErrorText.badUrlDescription, "The error shown on the screen is not the expected error for badURL")
     }
     
     @MainActor
@@ -90,7 +90,7 @@ class HowCatUITests: XCTestCase {
             XCTFail("Cat Error NetworkError didn't appear on time")
         }
         
-        XCTAssertEqual(errorLabel.label, CatServiceErrorText.networkErrorDescription)
+        XCTAssertEqual(errorLabel.label, CatServiceErrorText.networkErrorDescription, "The error shown on the screen is not the expected error for NetworkError")
     }
     
     @MainActor
@@ -113,7 +113,7 @@ class HowCatUITests: XCTestCase {
             XCTFail("Cat Error DecodingError didn't appear on time")
         }
         
-        XCTAssertEqual(errorLabel.label, CatServiceErrorText.decodingErrorDescription)
+        XCTAssertEqual(errorLabel.label, CatServiceErrorText.decodingErrorDescription, "The error shown on the screen is not the expected error for DecodingError")
     }
     
     @MainActor
@@ -136,6 +136,6 @@ class HowCatUITests: XCTestCase {
             XCTFail("Cat Error GeneralError didn't appear on time")
         }
         
-        XCTAssertEqual(errorLabel.label, CatServiceErrorText.generalErrorDescription)
+        XCTAssertEqual(errorLabel.label, CatServiceErrorText.generalErrorDescription, "The error shown on the screen is not the expected error for GeneralError")
     }
 }

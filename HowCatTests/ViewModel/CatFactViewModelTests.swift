@@ -40,9 +40,9 @@ class CatFactViewModelTests: XCTestCase {
             .sink { content in
                 let link = "https://google.com/"
                 
-                XCTAssertEqual(content.fact, "This is a fact")
-                XCTAssertEqual(content.imageUrl, URL(string: link))
-                XCTAssertEqual(content.imageUrl?.absoluteString, link)
+                XCTAssertEqual(content.fact, "This is a fact", "The fact provided is not the expected fact")
+                XCTAssertEqual(content.imageUrl, URL(string: link), "The image url is not the expected url")
+                XCTAssertEqual(content.imageUrl?.absoluteString, link, "The image url string is not the expected url string")
                 
                 expectation.fulfill()
             }
@@ -69,9 +69,9 @@ class CatFactViewModelTests: XCTestCase {
             tempSUT.$catContent
                 .dropFirst()
                 .sink { content in
-                    XCTAssertNotNil(content.errorMessage)
-                    XCTAssertNil(content.fact)
-                    XCTAssertNil(content.imageUrl)
+                    XCTAssertNotNil(content.errorMessage, "The error message should exist when throwing an error")
+                    XCTAssertNil(content.fact, "The fact must be nil or blank when an error occured")
+                    XCTAssertNil(content.imageUrl, "The imageUrl must be nil or blank when an error occured")
                     
                     expectation.fulfill()
                 }
