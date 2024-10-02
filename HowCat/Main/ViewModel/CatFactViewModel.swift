@@ -49,5 +49,10 @@ class CatFactViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
+    
+    func cancelSubscriptions() {
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+    }
 }
 

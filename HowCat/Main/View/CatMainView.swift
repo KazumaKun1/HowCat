@@ -40,7 +40,7 @@ struct CatMainView: View {
         }
         .onTapGesture {
             if !viewModel.catContent.isLoading {
-                viewModel.cancellables.removeAll()
+                viewModel.cancelSubscriptions()
                 KingfisherManager.shared.cache.clearCache()
                 
                 viewModel.fetchCatContent()
