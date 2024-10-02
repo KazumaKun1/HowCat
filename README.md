@@ -3,13 +3,15 @@ A delightful app that offers random cat images and fun facts about cats with jus
 
 ## Appendix
 
-This project is written on:
+This project is using:
 - Swift
 - SwiftUI
-- Xcode 16
+- MVVM Architecture
+- Unit Tests/UI Tests
+- 3rd party library (Kingfisher)
 
 In order to run this you need to have:
-- Preferrably Xcode 16 but you can try to use Xcode 15.xx.
+- Xcode 16 but you can try to use Xcode 15.xx.
     - This is to avoid issues when running this project on lower versions of xcode and macOS.
 - macOS Sonoma 14.5+ since this is the version where the Xcode 15 series will run.
 - iOS 18 for the simulator since it's the minimum deployment
@@ -23,20 +25,46 @@ After selecting the branch, you can open the project by:
 - Find the __.HowCat.xcodeproj__ file then open it
 Then in order to run the project you can simply press __ctrl + R__ on your keyboard to build and run.
 
+## Apple Framework used
+- SwiftUI
+- Combine
+- XCTest
+
 ## 3rd-Party Packages Used via Swift Package Manager
 - Kingfisher
+
+## Folder Structure
+- HowCat
+  - Constants
+  - Enums
+  - Loaders
+  - Main
+    - Model
+    - View
+    - ViewModel
+  - Services
+- HowCatTests
+  - Services
+  - ViewModel
+- HowCatUITests
 
 ## Features/Functionality
 
 - Tap anywhere on the screen to get a new fact of cats with image
 - Semi-localization on the cat facts depending on your preferred language that has been set on your device's settings
-- Accessibility implementation
+- Accessibility support
 
 ## GIF (IPhone)
 ![HowCat App Gifs](https://s11.gifyu.com/images/SAe1N.gif)
 
 ## GIF (IPad)
 ![HowCat App Gifs](https://s11.gifyu.com/images/SAe19.gif)
+
+## Video (IPhone)
+https://github.com/user-attachments/assets/bfc7880f-4a9e-4679-8b64-72bd9477b441
+
+## Video (IPad)
+https://github.com/user-attachments/assets/7d858e4e-89de-4bf9-9021-7340a38da1e8
 
 ## Screenshots (IPhone - Portrait)
 ![HowCat App Screenshots](https://i.ibb.co/sJkNPNH/Intro-Portrait.png)
