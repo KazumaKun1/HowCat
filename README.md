@@ -32,10 +32,10 @@ Then in order to run the project you can simply press __ctrl + R__ on your keybo
 - Accessibility implementation
 
 ## GIF (IPhone)
-![HowCat App Screenshots](https://i.ibb.co/Tvpnhqb/Screen-Recording-2024-10-01-at-10.gif)
+![HowCat App Gifs](https://s11.gifyu.com/images/SAe1N.gif)
 
 ## GIF (IPad)
-![HowCat App Screenshots](https://i.ibb.co/sHpSYx2/Screen-Recording-2024-10-01-at-10.gif)
+![HowCat App Gifs](https://s11.gifyu.com/images/SAe19.gif)
 
 ## Screenshots (IPhone - Portrait)
 ![HowCat App Screenshots](https://i.ibb.co/sJkNPNH/Intro-Portrait.png)
