@@ -13,7 +13,7 @@ This project is using:
 In order to run this you need to have:
 - Xcode 16 but you can try to use Xcode 15.xx.
     - This is to avoid issues when running this project on lower versions of xcode and macOS.
-- macOS Sonoma 14.5+ since this is the version where the Xcode 15 series will run.
+- macOS Sonoma 14.5+ since this is the version where the Xcode 15 & 16 series will run.
 - iOS 18 for the simulator since it's the minimum deployment
 - __(Optional)__ Sourcetree for easier cloning but you can clone this using Git terminal.
 
