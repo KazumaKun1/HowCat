@@ -27,14 +27,14 @@ struct CatFactView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width, height: proxy.size.height)
                         .clipped()
-                        .accessibilityLabel(imageLabel)
+                        .accessibilityLabel(imageLabel + "Tap anywhere on the screen to get a cat fact.")
                 } else {
                     Image("CatPicture")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width, height: proxy.size.height)
                         .clipped()
-                        .accessibilityLabel(imageLabel)
+                        .accessibilityLabel(imageLabel + "Tap anywhere on the screen to get a cat fact.")
                 }
                 
                 Color.black
@@ -46,6 +46,7 @@ struct CatFactView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding(.top, 40)
+                    .accessibilityHidden(true)
                 Spacer()
                 
                 if let fact = fact, !fact.isEmpty {
@@ -53,7 +54,7 @@ struct CatFactView: View {
                         .font(getAdaptiveFont())
                         .lineSpacing(1.15)
                         .multilineTextAlignment(.center)
-                        .accessibilityLabel(fact)
+                        .accessibilityLabel(fact + "Tap anywhere on the screen to get another cat fact.")
                 } else {
                     Text(introduction)
                         .font(getAdaptiveFont())

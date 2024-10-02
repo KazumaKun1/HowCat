@@ -68,7 +68,7 @@ struct CatFactLoadingView: View {
                     trimEnd = 0.9
             }
         }
-        .accessibilityLabel("Progress to get some cat information")
+        .accessibilityLabel("Currently getting some cat facts. Please wait until it's done.")
     }
 }
 
