@@ -18,23 +18,49 @@
 			remoteGlobalIDString = CC3B4F4B2CAACBB8003E6D8B;
 			remoteInfo = HowCat;
 		};
+		CC92407E2CACFA69000B150B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC3B4F442CAACBB8003E6D8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC3B4F4B2CAACBB8003E6D8B;
+			remoteInfo = HowCat;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CC3B4F4C2CAACBB8003E6D8B /* HowCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HowCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC3B4F5C2CAACBBB003E6D8B /* HowCatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HowCatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC9240782CACFA69000B150B /* HowCatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HowCatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC95725F2CAC15C900C04816 /* HowCat.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = HowCat.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CC92408C2CAD1820000B150B /* Exceptions for "HowCat" folder in "HowCatUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Constants/Constants.swift,
+			);
+			target = CC9240772CACFA69000B150B /* HowCatUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CC3B4F4E2CAACBB8003E6D8B /* HowCat */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CC92408C2CAD1820000B150B /* Exceptions for "HowCat" folder in "HowCatUITests" target */,
+			);
 			path = HowCat;
 			sourceTree = "<group>";
 		};
 		CC3B4F5F2CAACBBB003E6D8B /* HowCatTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HowCatTests;
+			sourceTree = "<group>";
+		};
+		CC9240792CACFA69000B150B /* HowCatUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HowCatUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -55,6 +81,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CC9240752CACFA69000B150B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +97,7 @@
 				CC95725F2CAC15C900C04816 /* HowCat.xctestplan */,
 				CC3B4F4E2CAACBB8003E6D8B /* HowCat */,
 				CC3B4F5F2CAACBBB003E6D8B /* HowCatTests */,
+				CC9240792CACFA69000B150B /* HowCatUITests */,
 				CC3B4F4D2CAACBB8003E6D8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +107,7 @@
 			children = (
 				CC3B4F4C2CAACBB8003E6D8B /* HowCat.app */,
 				CC3B4F5C2CAACBBB003E6D8B /* HowCatTests.xctest */,
+				CC9240782CACFA69000B150B /* HowCatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +161,29 @@
 			productReference = CC3B4F5C2CAACBBB003E6D8B /* HowCatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CC9240772CACFA69000B150B /* HowCatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC9240822CACFA69000B150B /* Build configuration list for PBXNativeTarget "HowCatUITests" */;
+			buildPhases = (
+				CC9240742CACFA69000B150B /* Sources */,
+				CC9240752CACFA69000B150B /* Frameworks */,
+				CC9240762CACFA69000B150B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC92407F2CACFA69000B150B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CC9240792CACFA69000B150B /* HowCatUITests */,
+			);
+			name = HowCatUITests;
+			packageProductDependencies = (
+			);
+			productName = HowCatUITests;
+			productReference = CC9240782CACFA69000B150B /* HowCatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -140,6 +198,10 @@
 						CreatedOnToolsVersion = 16.0;
 					};
 					CC3B4F5B2CAACBBB003E6D8B = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = CC3B4F4B2CAACBB8003E6D8B;
+					};
+					CC9240772CACFA69000B150B = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = CC3B4F4B2CAACBB8003E6D8B;
 					};
@@ -164,6 +226,7 @@
 			targets = (
 				CC3B4F4B2CAACBB8003E6D8B /* HowCat */,
 				CC3B4F5B2CAACBBB003E6D8B /* HowCatTests */,
+				CC9240772CACFA69000B150B /* HowCatUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -177,6 +240,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CC3B4F5A2CAACBBB003E6D8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC9240762CACFA69000B150B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -200,6 +270,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CC9240742CACFA69000B150B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -207,6 +284,11 @@
 			isa = PBXTargetDependency;
 			target = CC3B4F4B2CAACBB8003E6D8B /* HowCat */;
 			targetProxy = CC3B4F5D2CAACBBB003E6D8B /* PBXContainerItemProxy */;
+		};
+		CC92407F2CACFA69000B150B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC3B4F4B2CAACBB8003E6D8B /* HowCat */;
+			targetProxy = CC92407E2CACFA69000B150B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -426,6 +508,38 @@
 			};
 			name = Release;
 		};
+		CC9240802CACFA69000B150B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ArviejhayAlejandro.HowCat.HowCatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HowCat;
+			};
+			name = Debug;
+		};
+		CC9240812CACFA69000B150B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ArviejhayAlejandro.HowCat.HowCatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HowCat;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -452,6 +566,15 @@
 			buildConfigurations = (
 				CC3B4F742CAACBBB003E6D8B /* Debug */,
 				CC3B4F752CAACBBB003E6D8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC9240822CACFA69000B150B /* Build configuration list for PBXNativeTarget "HowCatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC9240802CACFA69000B150B /* Debug */,
+				CC9240812CACFA69000B150B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

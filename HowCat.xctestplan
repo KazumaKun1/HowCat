@@ -28,7 +28,7 @@
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:HowCat.xcodeproj",
-        "identifier" : "CC3B4F652CAACBBB003E6D8B",
+        "identifier" : "CC9240772CACFA69000B150B",
         "name" : "HowCatUITests"
       }
     }

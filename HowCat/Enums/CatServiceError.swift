@@ -12,19 +12,34 @@ enum CatServiceError: Error {
     case networkError
     case decodingError
     case generalError
+    
+    init?(errorString: String) {
+        switch errorString {
+        case CatServiceErrorText.badUrl:
+            self = .badURL
+        case CatServiceErrorText.networkError:
+            self = .networkError
+        case CatServiceErrorText.decodingError:
+            self = .decodingError
+        case CatServiceErrorText.generalError:
+            self = .generalError
+        default:
+            return nil
+        }
+    }
 }
 
 extension CatServiceError: LocalizedError {
     var errorDescription: String? {
         switch self {
             case .badURL:
-                return "Uh-oh! It seems we couldn't connect to the cat facts. Please try again later."
+                return CatServiceErrorText.badUrlDescription
             case .networkError:
-                return "Uh-oh! We're experiencing some cat trouble. Please check your internet connection and tap the screen again."
+                return CatServiceErrorText.networkErrorDescription
             case .decodingError:
-                return "Uh-oh! It seems like our cat is having a little trouble finding a fact. Tap the screen again, and let's see if we can fetch one this time!"
+                return CatServiceErrorText.decodingErrorDescription
             case .generalError:
-                return "Oops! It seems the cats are taking a nap. Please try again later."
+                return CatServiceErrorText.generalErrorDescription
         }
     }
 }

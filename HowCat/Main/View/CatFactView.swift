@@ -14,9 +14,6 @@ struct CatFactView: View {
     var fact: String?
     var imageUrl: URL?
     
-    private let introduction = "A delightful app that offers random cat images and fun facts about cats with just a tap, perfect for feline enthusiasts! Tap anywhere on the screen to start getting facts about cats!"
-    private let imageLabel = "A cat picture"
-    
     var body: some View {
         ZStack {
             GeometryReader { proxy in
@@ -24,17 +21,18 @@ struct CatFactView: View {
                     KFImage.url(url)
                         .fade(duration: 0.5)
                         .resizable()
+                        .cacheOriginalImage(false)
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width, height: proxy.size.height)
                         .clipped()
-                        .accessibilityLabel(imageLabel + "Tap anywhere on the screen to get a cat fact.")
+                        .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
                 } else {
                     Image("CatPicture")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: proxy.size.width, height: proxy.size.height)
                         .clipped()
-                        .accessibilityLabel(imageLabel + "Tap anywhere on the screen to get a cat fact.")
+                        .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
                 }
                 
                 Color.black
@@ -54,13 +52,15 @@ struct CatFactView: View {
                         .font(getAdaptiveFont())
                         .lineSpacing(1.15)
                         .multilineTextAlignment(.center)
-                        .accessibilityLabel(fact + "Tap anywhere on the screen to get another cat fact.")
+                        .accessibilityLabel(fact)
+                        .accessibilityIdentifier("factLabel")
                 } else {
-                    Text(introduction)
+                    Text(CatFactViewText.introduction)
                         .font(getAdaptiveFont())
                         .lineSpacing(1.15)
                         .multilineTextAlignment(.center)
-                        .accessibilityLabel(introduction)
+                        .accessibilityLabel(CatFactViewText.introduction)
+                        .accessibilityIdentifier("introductionLabel")
                 }
                 
                 Spacer()

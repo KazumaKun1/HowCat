@@ -24,13 +24,22 @@ struct CatErrorView: View {
                     .opacity(0.4)
                     .ignoresSafeArea(.all)
             }
-            Text(errorMessage)
-                .foregroundStyle(.white)
-                .font(.title3)
-                .lineSpacing(1.15)
-                .multilineTextAlignment(.center)
-                .padding()
-                .accessibilityLabel(errorMessage)
+            
+            VStack {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.largeTitle)
+                    .foregroundStyle(.white)
+                    .accessibilityHidden(true)
+                
+                Text(errorMessage)
+                    .foregroundStyle(.white)
+                    .font(.title3)
+                    .lineSpacing(1.15)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .accessibilityLabel(errorMessage)
+                    .accessibilityIdentifier("errorLabel")
+            }
         }
         .ignoresSafeArea(.all)
     }

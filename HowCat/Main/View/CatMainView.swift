@@ -9,11 +9,15 @@ import SwiftUI
 import Kingfisher
 
 struct CatMainView: View {
-    @StateObject private var viewModel = CatFactViewModel(catService: CatService())
+    @StateObject private var viewModel: CatFactViewModel
+    
+    init(catService: CatServiceProtocol) {
+        _viewModel = StateObject(wrappedValue: CatFactViewModel(catService: catService))
+    }
     
     var body: some View {
         ZStack {
-            Color.white
+            Color.accentColor
                 .ignoresSafeArea(.all)
             
             CatFactView(fact: viewModel.catContent.fact, imageUrl: viewModel.catContent.imageUrl)
@@ -27,15 +31,18 @@ struct CatMainView: View {
             if viewModel.catContent.isLoading {
                 CatFactLoadingView()
                     .transition(.opacity)
-                    .onDisappear {
-                        viewModel.cancellables.removeAll()
-                        KingfisherManager.shared.cache.clearCache()
-                    }
+ 
             }
         }
         .animation(.easeInOut(duration: 0.5), value: viewModel.catContent.isLoading)
+        .onAppear {
+            KingfisherManager.shared.cache.diskStorage.config.sizeLimit = 0
+        }
         .onTapGesture {
             if !viewModel.catContent.isLoading {
+                viewModel.cancellables.removeAll()
+                KingfisherManager.shared.cache.clearCache()
+                
                 viewModel.fetchCatContent()
             }
         }
@@ -44,5 +51,5 @@ struct CatMainView: View {
 }
 
 #Preview {
-    CatMainView()
+    CatMainView(catService: MockCatService())
 }

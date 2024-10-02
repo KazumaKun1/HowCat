@@ -11,7 +11,24 @@ import SwiftUI
 struct HowCatApp: App {
     var body: some Scene {
         WindowGroup {
-            CatMainView()
+            CatMainView(catService: catService)
         }
+    }
+    
+    private var catService: CatServiceProtocol {
+#if DEBUG
+        if ProcessInfo.processInfo.environment["USE_MOCK_SERVICE"] == "1" {
+            let mockService = MockCatService()
+            
+            if let errorString = ProcessInfo.processInfo.environment["CAT_SERVICE_ERROR"],
+               let error = CatServiceError(errorString: errorString) {
+                mockService.errorToThrow = error
+            }
+            
+            return mockService
+        }
+#endif
+        
+        return CatService()
     }
 }

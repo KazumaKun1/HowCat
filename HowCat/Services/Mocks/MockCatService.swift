@@ -5,7 +5,6 @@
 //  Created by Arviejhay Alejandro on 10/1/24.
 //
 import Combine
-@testable import HowCat
 
 class MockCatService: CatServiceProtocol {
     
