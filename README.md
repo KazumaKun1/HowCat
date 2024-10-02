@@ -31,14 +31,32 @@ Then in order to run the project you can simply press __ctrl + R__ on your keybo
 - Semi-localization on the cat facts depending on your preferred language that has been set on your device's settings
 - Accessibility implementation
 
+## GIF (IPhone)
+![HowCat App Screenshots](https://i.ibb.co/Tvpnhqb/Screen-Recording-2024-10-01-at-10.gif)
+
+## GIF (IPad)
+![HowCat App Screenshots](https://i.ibb.co/sHpSYx2/Screen-Recording-2024-10-01-at-10.gif)
+
 ## Screenshots (IPhone - Portrait)
 ![HowCat App Screenshots](https://i.ibb.co/sJkNPNH/Intro-Portrait.png)
+![HowCat App Screenshots](https://i.ibb.co/2t0ZP26/Fact-Portrait.png)
+![HowCat App Screenshots](https://i.ibb.co/xSd6htM/Fact-Loading-Portrait.png)
+
+## Semi-localization
+![HowCat App Screenshots](https://i.ibb.co/jHnJ49S/Semi-localization-Settings.png)
+![HowCat App Screenshots](https://i.ibb.co/YBJ5kBW/Semi-localization-in-action.png)
 
 ## Screenshots (IPhone - Landscape)
 ![HowCat App Screenshots](https://i.ibb.co/ck79HT8/Intro-Landscape.png)
+![HowCat App Screenshots](https://i.ibb.co/SXdB5BR/Fact-Landscape.png)
+![HowCat App Screenshots](https://i.ibb.co/yPMMk6f/Fact-Loading-Landscape.png)
 
 ## Screenshots (IPad - Portrait)
 ![HowCat App Screenshots](https://i.ibb.co/CKKrPHK/Intro-Portrait.png)
+![HowCat App Screenshots](https://i.ibb.co/p3Ckvr3/Fact-Portrait.png)
+![HowCat App Screenshots](https://i.ibb.co/JKp935g/Fact-Loading-Portrait.png)
 
 ## Screenshots (IPad - Landscape)
 ![HowCat App Screenshots](https://i.ibb.co/7zkp9Gp/Intro-Landscape.png)
+![HowCat App Screenshots](https://i.ibb.co/NjLcLbc/Fact-Landscape.png)
+![HowCat App Screenshots](https://i.ibb.co/DzJZ3T4/Fact-Loading-Landspace.png)
