@@ -54,6 +54,7 @@ Then in order to run the project you can simply press __ctrl + R__ on your keybo
 - Semi-localization on the cat facts depending on your preferred language that has been set on your device's settings
 - Accessibility support
 - Dark mode support
+- Supported iPhone and iPad screens
 
 ## GIF (IPhone)
 ![HowCat App Gifs](https://s11.gifyu.com/images/SAe1N.gif)
