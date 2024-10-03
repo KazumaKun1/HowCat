@@ -14,7 +14,7 @@ class MockCatService: CatServiceProtocol {
     var errorToThrow: CatServiceError?
     
     init() {
-        mockCatImage = [CatImageModel(url: "https://google.com/")]
+        mockCatImage = [CatImageModel(url: MockData.sampleImageUrl)]
         mockCatFact = CatFactModel(data: ["This is a fact"])
     }
     

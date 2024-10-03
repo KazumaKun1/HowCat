@@ -21,3 +21,7 @@ enum CatFactViewText {
     static let introduction = "A delightful app that offers random cat images and fun facts about cats with just a tap, perfect for feline enthusiasts! Tap anywhere on the screen to start getting facts about cats!"
     static let imageLabel = "A cat picture"
 }
+
+enum MockData {
+    static let sampleImageUrl = "https://cdn2.thecatapi.com/images/9uu.jpg"
+}
