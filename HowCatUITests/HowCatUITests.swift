@@ -48,6 +48,28 @@ class HowCatUITests: XCTestCase {
     }
     
     @MainActor
+    func testTapShareUponStarting_ShouldShowShareSheet() throws {
+        app.launchEnvironment = [
+            "USE_MOCK_SERVICE": "1"
+        ]
+        
+        app.launch()
+        
+        let middleOfScreen = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        middleOfScreen.tap()
+        
+        let shareLink = app.buttons["ShareLink"]
+        
+        let isShareLinkExist = shareLink.waitForExistence(timeout: 5)
+        
+        if !isShareLinkExist {
+            XCTFail("Share button didn't appear on time")
+        }
+        
+        shareLink.tap()
+    }
+    
+    @MainActor
     func testTapTheStartScreen_ShouldShowErrorOnBadURL() throws {
         app.launchEnvironment = [
             "USE_MOCK_SERVICE": "1",

@@ -11,7 +11,7 @@ import Combine
 @testable import HowCat
 
 class CatFactViewModelTests: XCTestCase {
-    var sut: CatFactViewModel!
+    var sut: CatMainViewModel!
     var mockCatService: CatServiceProtocol!
     var cancellables: Set<AnyCancellable>!
     
@@ -19,7 +19,7 @@ class CatFactViewModelTests: XCTestCase {
         super.setUp()
         
         mockCatService = MockCatService()
-        sut = CatFactViewModel(catService: mockCatService)
+        sut = CatMainViewModel(catService: mockCatService)
         cancellables = Set<AnyCancellable>()
     }
     
@@ -38,7 +38,7 @@ class CatFactViewModelTests: XCTestCase {
         sut.$catContent
             .dropFirst()
             .sink { content in
-                let link = "https://google.com/"
+                let link = MockData.sampleImageUrl
                 
                 XCTAssertEqual(content.fact, "This is a fact", "The fact provided is not the expected fact")
                 XCTAssertEqual(content.imageUrl, URL(string: link), "The image url is not the expected url")
@@ -62,7 +62,7 @@ class CatFactViewModelTests: XCTestCase {
             
             (mockCatService as! MockCatService).errorToThrow = error
             
-            let tempSUT = CatFactViewModel(catService: mockCatService)
+            let tempSUT = CatMainViewModel(catService: mockCatService)
             
             tempSUT.fetchCatContent()
             

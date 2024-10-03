@@ -131,7 +131,7 @@ class CatServiceTests: XCTestCase {
             } receiveValue: { models in
                 let urlString = models.first?.url
                 
-                XCTAssertEqual(urlString, "https://google.com/", "The url provided is not the expected url")
+                XCTAssertEqual(urlString, MockData.sampleImageUrl, "The url provided is not the expected url")
                 XCTAssertNotNil(URL(string: urlString!), "The provided url is not a valid url")
                 
                 expectation.fulfill()

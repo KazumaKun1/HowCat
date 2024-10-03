@@ -2,57 +2,40 @@
 //  CatFactViewModel.swift
 //  HowCat
 //
-//  Created by Arviejhay Alejandro on 9/30/24.
+//  Created by Arviejhay Alejandro on 10/3/24.
 //
 
-import Combine
 import SwiftUI
 
 class CatFactViewModel: ObservableObject {
-    private var catService: CatServiceProtocol
-    var cancellables = Set<AnyCancellable>()
+    @Published var isSavingSuccessful = false
+    @Published var isShowingAlert = false
     
-    @Published var catContent: CatContentModel = CatContentModel(isLoading: false)
+    var loadedImage: UIImage?
     
-    init(catService: CatServiceProtocol) {
-        self.catService = catService
+    private lazy var availableFonts: [String] = {
+        getAvailableFonts()
+    }()
+    
+    func getAdaptiveFont(isRandomized: Bool, _ horizontalSizeClass: UserInterfaceSizeClass?) -> Font {
+        if horizontalSizeClass == .regular {
+            return isRandomized ? .custom(randomFont(), size: 35, relativeTo: .largeTitle) : .largeTitle
+        } else {
+            return isRandomized ? .custom(randomFont(), size: 20, relativeTo: .title3) : .title3
+        }
     }
     
-    func fetchCatContent() {
-        catContent.errorMessage = nil
-        catContent.isLoading = true
+    private func getAvailableFonts() -> [String] {
+        var fontNames: [String] = []
+        for family in UIFont.familyNames {
+            let names = UIFont.fontNames(forFamilyName: family)
+            fontNames.append(contentsOf: names)
+        }
         
-        let catFactPublisher = catService.fetchCatFact()
-        let catImagePublisher = catService.fetchCatImage()
-        
-        Publishers.Zip(catImagePublisher, catFactPublisher)
-            .receive(on: DispatchQueue.main)
-            .timeout(.seconds(10), scheduler: DispatchQueue.main)
-            .delay(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .sink(receiveCompletion: { [weak self] completion in
-                guard let self else { return }
-                
-                switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self.catContent = CatContentModel(errorMessage: error.localizedDescription,
-                                                          isLoading: false)
-                        break
-                }
-            }, receiveValue: { [weak self] imageModels, fact in
-                guard let self else { return }
-                
-                self.catContent = CatContentModel(fact: fact.data.first,
-                                                  imageUrl: URL(string: imageModels.first?.url ?? ""),
-                                                  isLoading: false)
-            })
-            .store(in: &cancellables)
+        return fontNames
     }
     
-    func cancelSubscriptions() {
-        cancellables.forEach { $0.cancel() }
-        cancellables.removeAll()
+    private func randomFont() -> String {
+        return availableFonts.randomElement() ?? "System"
     }
 }
-

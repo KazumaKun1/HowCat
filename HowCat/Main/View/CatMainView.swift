@@ -9,10 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct CatMainView: View {
-    @StateObject private var viewModel: CatFactViewModel
+    @StateObject private var viewModel: CatMainViewModel
     
     init(catService: CatServiceProtocol) {
-        _viewModel = StateObject(wrappedValue: CatFactViewModel(catService: catService))
+        _viewModel = StateObject(wrappedValue: CatMainViewModel(catService: catService))
     }
     
     var body: some View {
