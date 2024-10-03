@@ -4,7 +4,7 @@ A delightful app that offers random cat images and fun facts about cats with jus
 ## Appendix
 
 This project is using:
-- Swift
+- Swift 6.0
 - SwiftUI
 - MVVM Architecture
 - Unit Tests/UI Tests
@@ -52,21 +52,16 @@ Then in order to run the project you can simply press __ctrl + R__ on your keybo
 
 - Tap anywhere on the screen to get a new fact of cats with image
 - Semi-localization on the cat facts depending on your preferred language that has been set on your device's settings
+- Share feature to share with anyone
 - Accessibility support
 - Dark mode support
 - Supported iPhone and iPad screens
 
-## GIF (IPhone)
-![HowCat App Gifs](https://s11.gifyu.com/images/SAe1N.gif)
-
-## GIF (IPad)
-![HowCat App Gifs](https://s11.gifyu.com/images/SAe19.gif)
-
 ## Video (IPhone)
-https://github.com/user-attachments/assets/bfc7880f-4a9e-4679-8b64-72bd9477b441
+https://github.com/user-attachments/assets/30e49bf5-2790-4c65-bb69-916a4fa28faf
 
 ## Video (IPad)
-https://github.com/user-attachments/assets/7d858e4e-89de-4bf9-9021-7340a38da1e8
+https://github.com/user-attachments/assets/d8135ef8-6aaa-44ac-8026-4e3fa82244d6
 
 ## Screenshots (IPhone - Portrait)
 ![HowCat App Screenshots](https://i.ibb.co/sJkNPNH/Intro-Portrait.png)
