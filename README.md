@@ -50,7 +50,7 @@ Then in order to run the project you can simply press __ctrl + R__ on your keybo
 
 ## Features/Functionality
 
-- Tap anywhere on the screen to get a new fact of cats with image
+- Tap anywhere on the screen to get a new fact of cats with image with randomized fonts that supports dynamic types
 - Semi-localization on the cat facts depending on your preferred language that has been set on your device's settings
 - Share feature to share with anyone
 - Accessibility support
