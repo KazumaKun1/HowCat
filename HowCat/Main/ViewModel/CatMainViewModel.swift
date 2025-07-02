@@ -12,15 +12,15 @@ class CatMainViewModel: ObservableObject {
     private var catService: CatServiceProtocol
     var cancellables = Set<AnyCancellable>()
     
-    @Published var catContent: CatContentModel = CatContentModel(isLoading: false)
+    @Published var state: CatScreenState = .main
+    @Published var isLoading: Bool = false
     
     init(catService: CatServiceProtocol) {
         self.catService = catService
     }
     
     func fetchCatContent() {
-        catContent.errorMessage = nil
-        catContent.isLoading = true
+        isLoading = true
         
         let catFactPublisher = catService.fetchCatFact()
         let catImagePublisher = catService.fetchCatImage()
@@ -28,24 +28,26 @@ class CatMainViewModel: ObservableObject {
         Publishers.Zip(catImagePublisher, catFactPublisher)
             .receive(on: DispatchQueue.main)
             .timeout(.seconds(10), scheduler: DispatchQueue.main)
-            .delay(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .delay(for: .seconds(1), scheduler: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self else { return }
-                
+                self.isLoading = false
                 switch completion {
                     case .finished:
                         break
                     case .failure(let error):
-                        self.catContent = CatContentModel(errorMessage: error.localizedDescription,
-                                                          isLoading: false)
+                        self.state = .errorScreen(message: error.localizedDescription)
                         break
                 }
             }, receiveValue: { [weak self] imageModels, fact in
-                guard let self else { return }
-                
-                self.catContent = CatContentModel(fact: fact.data.first,
-                                                  imageUrl: URL(string: imageModels.first?.url ?? ""),
-                                                  isLoading: false)
+                self?.isLoading = false
+                guard let self,
+                      let factText = fact.data.first,
+                      let imageUrl = URL(string: imageModels.first?.url ?? "") else {
+                    self?.state = .errorScreen(message: CatServiceErrorText.generalError)
+                    return
+                }
+                self.state = .factScreen(content: CatContent(fact: factText, imageUrl: imageUrl))
             })
             .store(in: &cancellables)
     }

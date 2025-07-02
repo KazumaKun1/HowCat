@@ -20,31 +20,33 @@ struct CatMainView: View {
             Color.accentColor
                 .ignoresSafeArea(.all)
             
-            CatFactView(fact: viewModel.catContent.fact, imageUrl: viewModel.catContent.imageUrl)
-                .transition(.opacity)
-            
-            if let message = viewModel.catContent.errorMessage {
+            switch viewModel.state {
+            case .main:
+                CatIntroView()
+            case .factScreen(let fact):
+                CatFactView(content: fact)
+            case .errorScreen(let message):
                 CatErrorView(errorMessage: message)
-                    .transition(.opacity)
             }
             
-            if viewModel.catContent.isLoading {
-                CatFactLoadingView()
-                    .transition(.opacity)
- 
+            if viewModel.isLoading {
+                VStack(spacing: 0) {
+                    CatFactLoadingView()
+                }
             }
         }
-        .animation(.easeInOut(duration: 0.5), value: viewModel.catContent.isLoading)
+        .animation(.linear(duration: 0.5), value: viewModel.state)
+        .animation(.easeInOut(duration: 0.5), value: viewModel.isLoading)
         .onAppear {
             KingfisherManager.shared.cache.diskStorage.config.sizeLimit = 0
         }
         .onTapGesture {
-            if !viewModel.catContent.isLoading {
-                viewModel.cancelSubscriptions()
-                KingfisherManager.shared.cache.clearCache()
-                
-                viewModel.fetchCatContent()
+            if viewModel.isLoading {
+                return
             }
+            viewModel.cancelSubscriptions()
+            KingfisherManager.shared.cache.clearCache()
+            viewModel.fetchCatContent()
         }
         .accessibilityAddTraits(.isButton)
     }
