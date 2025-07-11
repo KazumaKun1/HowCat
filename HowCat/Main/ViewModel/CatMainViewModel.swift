@@ -8,19 +8,19 @@
 import Combine
 import SwiftUI
 
-class CatMainViewModel: ObservableObject {
+@MainActor
+class CatMainViewModel: AsyncViewModel {
     private var catService: CatServiceProtocol
-    var cancellables = Set<AnyCancellable>()
     
-    @Published var catContent: CatContentModel = CatContentModel(isLoading: false)
+    @Published var state: CatMainViewScreenState = .main
     
     init(catService: CatServiceProtocol) {
         self.catService = catService
+        super.init()
     }
     
     func fetchCatContent() {
-        catContent.errorMessage = nil
-        catContent.isLoading = true
+        isLoading = true
         
         let catFactPublisher = catService.fetchCatFact()
         let catImagePublisher = catService.fetchCatImage()
@@ -31,28 +31,27 @@ class CatMainViewModel: ObservableObject {
             .delay(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self else { return }
+                self.isLoading = false
                 
                 switch completion {
                     case .finished:
                         break
                     case .failure(let error):
-                        self.catContent = CatContentModel(errorMessage: error.localizedDescription,
-                                                          isLoading: false)
+                        self.errorMessage = error.localizedDescription
                         break
                 }
             }, receiveValue: { [weak self] imageModels, fact in
-                guard let self else { return }
+                guard let self,
+                      let factText = fact.data.first,
+                      let imageUrl = URL(string: imageModels.first?.url ?? "") else {
+                    self?.errorMessage = CatServiceErrorText.generalError
+                    return
+                }
+                self.isLoading = false
                 
-                self.catContent = CatContentModel(fact: fact.data.first,
-                                                  imageUrl: URL(string: imageModels.first?.url ?? ""),
-                                                  isLoading: false)
+                self.state = .factScreen(content: CatContentModel(fact: factText, imageUrl: imageUrl))
             })
             .store(in: &cancellables)
-    }
-    
-    func cancelSubscriptions() {
-        cancellables.forEach { $0.cancel() }
-        cancellables.removeAll()
     }
 }
 

@@ -13,34 +13,27 @@ struct CatFactView: View {
     
     @StateObject private var viewModel = CatFactViewModel()
     
-    var fact: String?
-    var imageUrl: URL?
+    var content: CatContentModel
     
     var body: some View {
         ZStack {
             // MARK: - Cat Background Image
             ZStack {
                 GeometryReader { proxy in
-                    if let url = imageUrl {
-                        KFImage.url(url)
-                            .fade(duration: 0.5)
-                            .resizable()
-                            .cacheOriginalImage(false)
-                            .onSuccess {
-                                viewModel.loadedImage = $0.image
-                            }
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.width, height: proxy.size.height)
-                            .clipped()
-                            .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
-                    } else {
-                        Image("CatPicture")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: proxy.size.width, height: proxy.size.height)
-                            .clipped()
-                            .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
-                    }
+                    KFImage.url(content.imageUrl)
+                        .setProcessor(
+                            DownsamplingImageProcessor(size: proxy.size)
+                        )
+                        .fade(duration: 0.5)
+                        .resizable()
+                        .cacheOriginalImage(false)
+                        .onSuccess {
+                            viewModel.loadedImage = $0.image
+                        }
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: proxy.size.width, height: proxy.size.height)
+                        .clipped()
+                        .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
                     
                     Color.black
                         .opacity(0.4)
@@ -56,42 +49,28 @@ struct CatFactView: View {
                         .bold()
                         .accessibilityHidden(true)
                     
-                    if let url = imageUrl,
-                       let newFact = fact,
-                       !newFact.isEmpty {
-                        Spacer()
-                        // MARK: - Share Button
-                        ShareLink(item: url,
-                                  subject: Text("HowCat's cat fact"),
-                                  message: Text(newFact)) {
-                            Image(systemName: "square.and.arrow.up.fill")
-                                .font(.title)
-                        }
-                        .accessibilityLabel("Share Button")
-                        .accessibilityIdentifier("ShareLink")
+                    Spacer()
+                    // MARK: - Share Button
+                    ShareLink(item: content.imageUrl,
+                              subject: Text("HowCat's cat fact"),
+                              message: Text(content.fact)) {
+                        Image(systemName: "square.and.arrow.up.fill")
+                            .font(.title)
                     }
+                    .accessibilityLabel("Share Button")
+                    .accessibilityIdentifier("ShareLink")
                 }
                 
                 Spacer()
                 
                 // MARK: - fact text
-                if let fact = fact, !fact.isEmpty {
-                    Text(fact)
-                        .font(viewModel.getAdaptiveFont(isRandomized: true, horizontalSizeClass))
-                        .lineSpacing(1.15)
-                        .multilineTextAlignment(.center)
-                        .minimumScaleFactor(0.5)
-                        .accessibilityLabel(fact)
-                        .accessibilityIdentifier("factLabel")
-                } else {
-                    Text(CatFactViewText.introduction)
-                        .font(viewModel.getAdaptiveFont(isRandomized: false, horizontalSizeClass))
-                        .lineSpacing(1.15)
-                        .multilineTextAlignment(.center)
-                        .accessibilityLabel(CatFactViewText.introduction)
-                        .accessibilityIdentifier("introductionLabel")
-                    
-                }
+                Text(content.fact)
+                    .font(FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: horizontalSizeClass))
+                    .lineSpacing(1.15)
+                    .multilineTextAlignment(.center)
+                    .minimumScaleFactor(0.5)
+                    .accessibilityLabel(content.fact)
+                    .accessibilityIdentifier("factLabel")
                 
                 Spacer()
             }
@@ -99,8 +78,4 @@ struct CatFactView: View {
             .foregroundStyle(.white)
         }
     }
-}
-
-#Preview {
-    CatFactView()
 }

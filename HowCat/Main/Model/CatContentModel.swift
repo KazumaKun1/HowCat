@@ -7,9 +7,7 @@
 
 import UIKit
 
-struct CatContentModel {
-    var fact: String?
-    var imageUrl: URL?
-    var errorMessage: String?
-    var isLoading: Bool = false
+struct CatContentModel: Equatable {
+    var fact: String
+    var imageUrl: URL
 }
