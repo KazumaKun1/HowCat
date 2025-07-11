@@ -1,5 +1,5 @@
 //
-//  CatFact.swift
+//  CatContentModel.swift
 //  HowCat
 //
 //  Created by Arviejhay Alejandro on 9/30/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CatContent: Equatable {
+struct CatContentModel: Equatable {
     var fact: String
     var imageUrl: URL
 }

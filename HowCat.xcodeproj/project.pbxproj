@@ -39,6 +39,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Constants/Constants.swift,
+				Constants/FontHelper.swift,
 			);
 			target = CC9240772CACFA69000B150B /* HowCatUITests */;
 		};

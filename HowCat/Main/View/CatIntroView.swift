@@ -2,7 +2,7 @@
 //  CatIntroView.swift
 //  HowCat
 //
-//  Created by Arviejhay Alejandro on 7/2/25.
+//  Created by Arviejhay Alejandro on 7/11/25.
 //
 
 import SwiftUI

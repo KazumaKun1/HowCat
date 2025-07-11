@@ -13,7 +13,7 @@ struct CatFactView: View {
     
     @StateObject private var viewModel = CatFactViewModel()
     
-    var content: CatContent
+    var content: CatContentModel
     
     var body: some View {
         ZStack {
@@ -21,6 +21,9 @@ struct CatFactView: View {
             ZStack {
                 GeometryReader { proxy in
                     KFImage.url(content.imageUrl)
+                        .setProcessor(
+                            DownsamplingImageProcessor(size: proxy.size)
+                        )
                         .fade(duration: 0.5)
                         .resizable()
                         .cacheOriginalImage(false)

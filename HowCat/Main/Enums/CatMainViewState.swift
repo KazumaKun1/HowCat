@@ -7,6 +7,5 @@ import Foundation
 
 enum CatScreenState: Equatable {
     case main
-    case factScreen(content: CatContent)
-    case errorScreen(message: String)
+    case factScreen(content: CatContentModel)
 }
