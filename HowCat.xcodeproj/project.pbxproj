@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		CC9572572CABC94900C04816 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CC9572562CABC94900C04816 /* Kingfisher */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		CC3B4F5D2CAACBBB003E6D8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -38,8 +34,8 @@
 		CC92408C2CAD1820000B150B /* Exceptions for "HowCat" folder in "HowCatUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Constants/Constants.swift,
-				Constants/FontHelper.swift,
+				Common/Constants/Constants.swift,
+				Common/Constants/FontHelper.swift,
 			);
 			target = CC9240772CACFA69000B150B /* HowCatUITests */;
 		};
@@ -71,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC9572572CABC94900C04816 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +128,6 @@
 			);
 			name = HowCat;
 			packageProductDependencies = (
-				CC9572562CABC94900C04816 /* Kingfisher */,
 			);
 			productName = HowCat;
 			productReference = CC3B4F4C2CAACBB8003E6D8B /* HowCat.app */;
@@ -193,7 +187,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					CC3B4F4B2CAACBB8003E6D8B = {
 						CreatedOnToolsVersion = 16.0;
@@ -218,7 +212,6 @@
 			mainGroup = CC3B4F432CAACBB8003E6D8B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CC9572552CABC94900C04816 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CC3B4F4D2CAACBB8003E6D8B /* Products */;
@@ -352,8 +345,10 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -408,7 +403,9 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -438,7 +435,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ArviejhayAlejandro.HowCat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -468,7 +466,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ArviejhayAlejandro.HowCat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -581,25 +580,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CC9572552CABC94900C04816 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		CC9572562CABC94900C04816 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CC9572552CABC94900C04816 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC3B4F442CAACBB8003E6D8B /* Project object */;
 }
