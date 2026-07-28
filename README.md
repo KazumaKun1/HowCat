@@ -1,6 +1,3 @@
-# Additional Notes
-Currently, Combine is used here but the usage of if is plainly wrong as i was still learning combine back then. I will refactor this soon.
-
 # HowCat
 A delightful app that offers random cat images and fun facts about cats with just a tap, perfect for feline enthusiasts!
 
