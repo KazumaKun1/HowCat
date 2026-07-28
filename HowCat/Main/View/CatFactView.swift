@@ -6,40 +6,47 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct CatFactView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    @StateObject private var viewModel = CatFactViewModel()
+    @ObservedObject var viewModel: CatViewModel
     
-    var content: CatContentModel
+    @State private var factFont: Font = FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: nil)
     
     var body: some View {
         ZStack {
             // MARK: - Cat Background Image
             ZStack {
-                GeometryReader { proxy in
-                    KFImage.url(content.imageUrl)
-                        .setProcessor(
-                            DownsamplingImageProcessor(size: proxy.size)
-                        )
-                        .fade(duration: 0.5)
-                        .resizable()
-                        .cacheOriginalImage(false)
-                        .onSuccess {
-                            viewModel.loadedImage = $0.image
-                        }
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: proxy.size.width, height: proxy.size.height)
-                        .clipped()
-                        .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
-                    
-                    Color.black
-                        .opacity(0.4)
+                AsyncImage(url: viewModel.content.imageUrl, transaction: Transaction(animation: .easeInOut(duration: 0.5))) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                            .font(.largeTitle)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .transition(.opacity)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                            .transition(.opacity)
+                    case .failure:
+                        Image(systemName: "wifi.slash")
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                            .transition(.opacity)
+                    @unknown default:
+                        Text("Not Available. Need Developer to fix it")
+                    }
                 }
-                .ignoresSafeArea(.all)
+                Color.black
+                    .opacity(0.4)
+                
             }
+            .ignoresSafeArea()
+            .containerRelativeFrame([.vertical, .horizontal])
             
             VStack {
                 HStack {
@@ -51,9 +58,10 @@ struct CatFactView: View {
                     
                     Spacer()
                     // MARK: - Share Button
-                    ShareLink(item: content.imageUrl,
+                    ShareLink(item: viewModel.content.imageUrl,
                               subject: Text("HowCat's cat fact"),
-                              message: Text(content.fact)) {
+                              message: Text(viewModel.content.fact),
+                              preview: SharePreview("HowCat", image: Image(systemName: "cat.fill"))) {
                         Image(systemName: "square.and.arrow.up.fill")
                             .font(.title)
                     }
@@ -64,18 +72,38 @@ struct CatFactView: View {
                 Spacer()
                 
                 // MARK: - fact text
-                Text(content.fact)
-                    .font(FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: horizontalSizeClass))
+                Text(viewModel.content.fact)
+                    .font(factFont)
                     .lineSpacing(1.15)
                     .multilineTextAlignment(.center)
                     .minimumScaleFactor(0.5)
-                    .accessibilityLabel(content.fact)
+                    .accessibilityLabel(viewModel.content.fact)
                     .accessibilityIdentifier("factLabel")
                 
                 Spacer()
             }
             .padding()
             .foregroundStyle(.white)
+            
+            if viewModel.isLoading {
+                CatFactLoadingView()
+            }
         }
+        .onTapGesture {
+            viewModel.screenTappedSubject.send()
+        }
+        .onChange(of: viewModel.content.fact) { _, _ in
+            factFont = FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: horizontalSizeClass)
+        }
+        .onAppear {
+            factFont = FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: horizontalSizeClass)
+        }
+        .disabled(viewModel.isLoading)
+        .navigationBarBackButtonHidden(true)
+        .animation(.easeInOut, value: viewModel.isLoading)
     }
+}
+
+#Preview {
+    CatFactView(viewModel: CatViewModel(catService: CatService()))
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol CatServiceProtocol {
-    func fetchCatImage() -> AnyPublisher<[CatImageModel], Error>
+    func fetchCatImage() -> AnyPublisher<CatImageModel, Error>
     func fetchCatFact() -> AnyPublisher<CatFactModel, Error>
 }
 
@@ -38,7 +38,7 @@ class CatService: CatServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchCatImage() -> AnyPublisher<[CatImageModel], Error> {
+    func fetchCatImage() -> AnyPublisher<CatImageModel, Error> {
         guard let url = URL(string: apiLoader.catImageAPI) else {
             return Fail(error: CatServiceError.badURL)
                 .eraseToAnyPublisher()
@@ -56,6 +56,7 @@ class CatService: CatServiceProtocol {
                 
                 return CatServiceError.generalError
             }
+            .compactMap { $0.first }
             .eraseToAnyPublisher()
     }
 }

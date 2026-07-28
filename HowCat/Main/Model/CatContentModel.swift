@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CatContentModel: Equatable {
+struct CatContentModel: Hashable {
     var fact: String
     var imageUrl: URL
 }

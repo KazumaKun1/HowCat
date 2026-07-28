@@ -29,7 +29,7 @@ class MockCatService: CatServiceProtocol {
             .eraseToAnyPublisher()
     }
     
-    func fetchCatImage() -> AnyPublisher<[CatImageModel], any Error> {
+    func fetchCatImage() -> AnyPublisher<CatImageModel, any Error> {
         if let error = errorToThrow {
             return Fail(error: error).eraseToAnyPublisher()
         }
@@ -37,6 +37,7 @@ class MockCatService: CatServiceProtocol {
         return Just(mockCatImage)
             .setFailureType(to: CatServiceError.self)
             .mapError { $0 as Error }
+            .compactMap { $0.first }
             .eraseToAnyPublisher()
     }
 }
