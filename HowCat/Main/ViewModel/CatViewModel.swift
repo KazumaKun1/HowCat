@@ -67,7 +67,12 @@ private extension CatViewModel {
 
 private extension CatViewModel {
     func handleSuccess(fact: CatFactModel, image: CatImageModel) {
-        content = CatContentModel(fact: fact.data.first ?? "", imageUrl: URL(string: image.url)!)
+        guard let imageUrl = URL(string: image.url) else {
+            handleError()
+            return
+        }
+        
+        content = CatContentModel(fact: fact.data.first ?? "", imageUrl: imageUrl)
         
         navigationTrigger.send(.fact)
     }

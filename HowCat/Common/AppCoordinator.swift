@@ -49,5 +49,4 @@ class AppCoordinator {
 // MARK: - Navigation Methods
 extension AppCoordinator {
     func navigate(to route: AppRoute) { path.append(route) }
-    func goBack() { if !path.isEmpty { path.removeLast() } }
 }

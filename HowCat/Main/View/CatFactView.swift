@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct CatFactView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
@@ -19,7 +18,7 @@ struct CatFactView: View {
         ZStack {
             // MARK: - Cat Background Image
             ZStack {
-                AsyncImage(url: viewModel.content.imageUrl) { phase in
+                AsyncImage(url: viewModel.content.imageUrl, transaction: Transaction(animation: .easeInOut(duration: 0.5))) { phase in
                     switch phase {
                     case .empty:
                         ProgressView()
@@ -61,7 +60,8 @@ struct CatFactView: View {
                     // MARK: - Share Button
                     ShareLink(item: viewModel.content.imageUrl,
                               subject: Text("HowCat's cat fact"),
-                              message: Text(viewModel.content.fact)) {
+                              message: Text(viewModel.content.fact),
+                              preview: SharePreview("HowCat", image: Image(systemName: "cat.fill"))) {
                         Image(systemName: "square.and.arrow.up.fill")
                             .font(.title)
                     }
@@ -92,10 +92,10 @@ struct CatFactView: View {
         .onTapGesture {
             viewModel.screenTappedSubject.send()
         }
-        .onChange(of: viewModel.content.fact) { @MainActor _, _ in
+        .onChange(of: viewModel.content.fact) { _, _ in
             factFont = FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: horizontalSizeClass)
         }
-        .onAppear { @MainActor in
+        .onAppear {
             factFont = FontHelper.getAdaptiveFont(isRandomized: true, horizontalSizeClass: horizontalSizeClass)
         }
         .disabled(viewModel.isLoading)

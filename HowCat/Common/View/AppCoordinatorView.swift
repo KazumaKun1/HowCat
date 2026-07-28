@@ -17,10 +17,11 @@ struct AppCoordinatorView: View {
                     coordinator.build(route: route)
                 }
         }
-        .onReceive(
-            coordinator.viewModel.dedupedNavigationTrigger
-        ) { route in
+        .onReceive(coordinator.viewModel.dedupedNavigationTrigger) { route in
             coordinator.navigate(to: route)
+        }
+        .onReceive(coordinator.viewModel.alertTrigger) { config in
+            coordinator.presentAlert(config)
         }
         .alert(item: $coordinator.activeAlert) { config in
             Alert(

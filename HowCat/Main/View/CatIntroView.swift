@@ -59,7 +59,7 @@ private extension CatIntroView {
                 Image("CatPicture")
                     .resizable()
                     .scaledToFill()
-                    .accessibilityLabel(CatFactViewText.imageLabel + "Tap anywhere on the screen to get a cat fact.")
+                    .accessibilityLabel("\(CatFactViewText.imageLabel). Tap anywhere on the screen to get a cat fact.")
                 Color.black
                     .opacity(0.4)
             }
