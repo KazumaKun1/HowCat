@@ -77,7 +77,7 @@ struct CatServiceTests {
     func returnCatImageFailures(error: CatServiceError) async {
         (sut as! MockCatService).errorToThrow = error
         
-        let publisher = sut.fetchCatFact()
+        let publisher = sut.fetchCatImage()
         var cancellables = Set<AnyCancellable>()
         
         await confirmation { confirmation in
