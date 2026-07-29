@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 class CatViewModel: ObservableObject {
-    @Published var content: CatContentModel = CatContentModel(fact: "", imageUrl: URL(string: "https://www.google.com")!)
+    @Published var content: CatContentModel = CatContentModel(fact: "", imageUrl: URL(string: "https://cdn2.thecatapi.com/images/9uu.jpg")!)
     @Published var isLoading = false
     
     private let catService: CatServiceProtocol
