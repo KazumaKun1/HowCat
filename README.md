@@ -8,7 +8,6 @@ This project is using:
 - SwiftUI
 - MVVM Architecture
 - Unit Tests/UI Tests
-- 3rd party library (Kingfisher)
 
 In order to run this you need to have:
 - Xcode 16 but you can try to use Xcode 15.xx.
@@ -29,9 +28,6 @@ Then in order to run the project you can simply press __ctrl + R__ on your keybo
 - SwiftUI
 - Combine
 - XCTest
-
-## 3rd-Party Packages Used via Swift Package Manager
-- Kingfisher
 
 ## Folder Structure
 - HowCat
